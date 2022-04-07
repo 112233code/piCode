@@ -12,6 +12,6 @@ while 1:
     chan = AnalogIn(ads, ADS.P3)
     value = chan.value
     volt = (value/65536*4.6)
-    tds  = (-37.2)volt*volt*volt + (533.4) volt*volt + (121.8)*volt + 2.8
+    tds  = (-37.2)(volt)*(volt)*(volt) + (533.4) (volt)*(volt) + (121.8)*(volt) + 2.8
     print("TDS value is ",tds,"ppm")
     time.sleep(1)
