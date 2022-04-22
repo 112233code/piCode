@@ -3,15 +3,17 @@ import os
 import time
 import busio
 from time import sleep
-import adafruit_ads1x15.ads1115 as ADS
-from adafruit_ads1x15.analog_in import AnalogIn
+import Adafruit_ADS1x15
+adc = Adafruit_ADS1x15.ADS1115(address=0x48, busnum=1)
+Gain = 1
+count = 0
 while 1:
-    i2c = busio.I2C(board.SCL, board.SDA)
-    ads = ADS.ADS1115(i2c)
-    ads.gain =2
-    chan = AnalogIn(ads, ADS.P1)
-    value = chan.value
-    volt = (value/65536*4.6)
-    Ph  = (-18.75)*volt + 15.53
-    print("Ph value is ",ph,"ph")
+    count += 1
+    print (count)
+    value = [0]
+    value[0] = adc.read_adc(0, gain=Gain)
+    volt = value[0]* 4.06 / 32768 
+    Ph  = (-3.125)*volt + 15.0625
+    print("Ph value is ",Ph,"ph")
     time.sleep(1)
+
